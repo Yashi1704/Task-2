@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Note App</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: rgb(4, 179, 4);
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3.0rem;
+      margin-bottom: 0;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    #note-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .note {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      min-height: 100px;
+      resize: none;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .add-btn {
+      background-color: #fff;
+      color: green;
+      border: 2px dashed green;
+      font-size: 2rem;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .add-btn:hover {
+      background-color: #ccffcc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Note app</h1>
+  <p>Double click on a note to remove it</p>
+
+  <div id="note-container">
+    <div class="add-btn" onclick="addNote()">+</div>
+  </div>
+
+  <script>
+    const container = document.getElementById('note-container');
+
+    function addNote() {
+      const note = document.createElement('textarea');
+      note.className = 'note';
+      note.placeholder = 'Type here...';
+      note.ondblclick = () => {
+        container.removeChild(note);
+      };
+
+      // Insert before the "+" button
+      container.insertBefore(note, container.lastElementChild);
+    }
+  </script>
+
+</body>
+</html>
